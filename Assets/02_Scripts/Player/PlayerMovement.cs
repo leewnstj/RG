@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("플레이어 기본 스텟")]
     [SerializeField] float PlayerSpeed;
     [SerializeField] float LaycastDistance;
     [SerializeField] float PlayerJumpPower;
+    [SerializeField] float DashPower;
 
     public LayerMask layer;
 
@@ -40,9 +42,17 @@ public class PlayerMovement : MonoBehaviour
     public void PlayerJump()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, LaycastDistance, layer);
-        if(Input.GetKeyDown(KeyCode.Space)&& hit)
+        if(Input.GetKeyDown(KeyCode.Space) && hit)
         {
             rigid.velocity = new Vector2(rigid.velocity.x, PlayerJumpPower);
+        }
+    }
+
+    public void PlayerDash()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            rigid.velocity = new Vector2(DashPower,0);
         }
     }
 }

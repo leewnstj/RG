@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     {
         PlayerMove();
         PlayerJump();
+        PlayerDash();
     }
 
     private void PlayerMove()
@@ -21,6 +22,11 @@ public class PlayerController : MonoBehaviour
     }
 
     private void PlayerJump()
+    {
+        PlayerInput.Invoke();
+    }
+
+    private void PlayerDash()
     {
         PlayerInput.Invoke();
     }
