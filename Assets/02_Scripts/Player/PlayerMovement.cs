@@ -4,34 +4,40 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("플레이어 기본 스텟")]
     [SerializeField] float PlayerSpeed;
-    [SerializeField] float LaycastDistance;
-    [SerializeField] float PlayerJumpPower;
+    [SerializeField] float JumpDistance;
+    [SerializeField] float JumpPower;
+
     [SerializeField] float DashPower;
 
     public LayerMask layer;
-
     private Rigidbody2D rigid;
-
-    private void Start()
+    void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
     }
-    public void PlayerMove(Vector2 X)
+
+    // Update is called once per frame
+    void Update()
     {
-        rigid.velocity = new Vector2(X.x * PlayerSpeed, rigid.velocity.y);
+        Move();
+        Jump();
+        Dash();
     }
 
-    public void PlayerFilp(Vector2 X)
+    private void Move()
     {
-        if(X.x > 0)
+        float X = Input.GetAxisRaw("Horizontal");
+
+        rigid.velocity = new Vector2(X * PlayerSpeed, rigid.velocity.y);
+
+        if(X > 0)
         {
             transform.localScale = new Vector2(1, 1);
         }
-        else if(X.x == 0)
+        else if(X == 0)
         {
-            transform.localScale = transform.localScale;
+            transform.localScale = new Vector2(transform.localScale.x, 1);
         }
         else
         {
@@ -39,20 +45,20 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void PlayerJump()
+    private void Jump()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, LaycastDistance, layer);
-        if(Input.GetKeyDown(KeyCode.Space) && hit)
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, JumpDistance, layer);
+        if (Input.GetKeyDown(KeyCode.Space) && hit)
         {
-            rigid.velocity = new Vector2(rigid.velocity.x, PlayerJumpPower);
+            rigid.velocity = new Vector2(rigid.velocity.x, JumpPower);
         }
     }
 
-    public void PlayerDash()
+    private void Dash()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            rigid.velocity = new Vector2(DashPower,0);
+            Debug.Log("Dashing");
         }
     }
 }
