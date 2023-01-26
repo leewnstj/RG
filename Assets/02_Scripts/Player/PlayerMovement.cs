@@ -12,9 +12,12 @@ public class PlayerMovement : MonoBehaviour
 
     public LayerMask layer;
     private Rigidbody2D rigid;
+    private Animator anim;
+
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -28,8 +31,8 @@ public class PlayerMovement : MonoBehaviour
     private void Move()
     {
         float X = Input.GetAxisRaw("Horizontal");
-
         rigid.velocity = new Vector2(X * PlayerSpeed, rigid.velocity.y);
+        anim.SetFloat("X",X);
         PlayerFilp(X);
     }
 
