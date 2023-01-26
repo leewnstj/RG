@@ -49,10 +49,12 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, JumpDistance, layer);
+
         if (Input.GetKeyDown(KeyCode.Space) && hit)
         {
             rigid.velocity = new Vector2(rigid.velocity.x, JumpPower);
         }
+        anim.SetBool("Jump", hit);
     }
 
     private void Dash()
