@@ -30,19 +30,17 @@ public class PlayerMovement : MonoBehaviour
         float X = Input.GetAxisRaw("Horizontal");
 
         rigid.velocity = new Vector2(X * PlayerSpeed, rigid.velocity.y);
+        PlayerFilp(X);
+    }
 
-        if(X > 0)
+    private void PlayerFilp(float X)
+    {
+        transform.localScale = X switch
         {
-            transform.localScale = new Vector2(1, 1);
-        }
-        else if(X == 0)
-        {
-            transform.localScale = new Vector2(transform.localScale.x, 1);
-        }
-        else
-        {
-            transform.localScale = new Vector2(-1, 1);
-        }
+            1 => new Vector2(1, 1),
+            -1 => new Vector2(-1, 1),
+            _ => transform.localScale
+        };
     }
 
     private void Jump()

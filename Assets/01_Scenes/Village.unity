@@ -426,6 +426,7 @@ GameObject:
   - component: {fileID: 1487712834}
   - component: {fileID: 1487712833}
   - component: {fileID: 1487712835}
+  - component: {fileID: 1487712836}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -492,8 +493,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1487712830}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.27, y: -0.2, z: 0}
-  m_LocalScale: {x: 0.7671317, y: 0.7671317, z: 0.7671317}
+  m_LocalPosition: {x: 5.67, y: -3.22, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 859726285}
   m_Father: {fileID: 0}
@@ -519,7 +520,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1487712834
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -558,10 +559,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5de9c19a983bed74280dfbcf9020d0b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FollowSize: {x: 8.75, y: 3}
+  EnemySpeed: 2
+  FollowDistance: 8
+  EnemyAttackDis: 3
+  HitBox: {x: 3, y: 3}
   layer:
     serializedVersion: 2
     m_Bits: 64
+  canAttack: 0
+--- !u!95 &1487712836
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487712830}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d76b20967b2fff34d9a9f9d8fe32455f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1703622057
 GameObject:
   m_ObjectHideFlags: 3
