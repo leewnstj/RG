@@ -69,12 +69,12 @@ public class Enemy : MonoBehaviour
     {
         Collider2D hitBox = Physics2D.OverlapBox(transform.position, HitBox, 0, layer);
         anim.SetBool("Attack", false);
+        
         if (hitBox)
         {
             Debug.Log("공격성공");
         }
+        
         canAttack = false;
-
-
     }
 }
