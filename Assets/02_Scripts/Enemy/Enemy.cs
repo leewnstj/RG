@@ -10,16 +10,16 @@ public class Enemy : MonoBehaviour
     [SerializeField] float EnemyAttackDis;
     [SerializeField] Vector2 HitBox;
     [SerializeField] LayerMask layer;
-    private Enemy enemy;
     private Animator anim;
+    private PlayerHP playerHP;
 
     public bool canAttack;
 
     private void Start()
     {
         canAttack = false;
-        enemy = GetComponent<Enemy>();
         anim = GetComponent<Animator>();
+        playerHP = GetComponent<PlayerHP>();
     }
 
     private void Update()
@@ -40,11 +40,11 @@ public class Enemy : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, hit.collider.transform.position, Time.deltaTime * EnemySpeed);
             if(hit.collider.transform.position.x > transform.position.x)
             {
-                transform.localScale = new Vector2(-1, 1);
+                transform.localScale = new Vector2(1, 1);
             }
             else
             {
-                transform.localScale = new Vector2(1, 1);
+                transform.localScale = new Vector2(-1, 1);
             }
             if (attack)
             {
@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour
         
         if (hitBox)
         {
-            Debug.Log("공격성공");
+            playerHP.PlayerCurrentHP -= 10;
         }
         
         canAttack = false;
