@@ -11,7 +11,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] Vector2 HitBox;
     [SerializeField] LayerMask layer;
     private Animator anim;
-    private PlayerHP playerHP;
 
     public bool canAttack;
 
@@ -19,7 +18,6 @@ public class Enemy : MonoBehaviour
     {
         canAttack = false;
         anim = GetComponent<Animator>();
-        playerHP = GetComponent<PlayerHP>();
     }
 
     private void Update()
@@ -72,7 +70,6 @@ public class Enemy : MonoBehaviour
         
         if (hitBox)
         {
-            playerHP.PlayerCurrentHP -= 10;
         }
         
         canAttack = false;
