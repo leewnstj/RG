@@ -12,7 +12,7 @@ public struct Stats
 public abstract class Entity : MonoBehaviour
 {
     private Stats stats;    //캐릭터 정보
-    private Entity target;  //공격 대상
+    public Entity target;  //공격 대상
 
     public float HP
     {
